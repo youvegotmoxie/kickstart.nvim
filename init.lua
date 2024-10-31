@@ -82,6 +82,7 @@ vim.opt.scrolloff = 10
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- custom.keymaps
 -- Buffer keymaps
 local map = vim.keymap.set
 map('n', '<leader>bn', '<cmd>enew<CR>', { desc = '[B]uffer [N]ew' })
@@ -99,6 +100,9 @@ map('n', '<leader>tt', '<Cmd>FloatermToggle<CR>', { desc = '[T]erminal [T]toggle
 map('n', '<leader>tn', '<Cmd>FloatermNew<CR>', { desc = '[T]erminal [New]' })
 map('n', '<leader>tN', '<Cmd>FloatermNext<CR>', { desc = 'Cycle Next Terminal' })
 vim.g.floaterm_title = 'Terminal ($1/$2)'
+
+-- Filetype keymaps
+map('n', '<leader>Ta', '<Cmd>set ft=yaml.ansible<CR>', { desc = 'Set File [T]ype to [A]nsible' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -999,7 +1003,6 @@ require('lazy').setup({
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
-
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
