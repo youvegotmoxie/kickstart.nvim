@@ -708,6 +708,7 @@ require('lazy').setup({
         },
         -- pyright {
         bashls = {},
+        nil_ls = {},
         helm_ls = {},
         groovyls = {},
         terraformls = {},
@@ -792,6 +793,7 @@ require('lazy').setup({
         'autopep8',
         'json-lsp',
         'groovy-language-server',
+        'nixpkgs-fmt',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
