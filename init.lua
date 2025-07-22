@@ -793,7 +793,7 @@ require('lazy').setup({
         'autopep8',
         'json-lsp',
         'groovy-language-server',
-        'nixpkgs-fmt',
+        'alejandra',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -850,7 +850,7 @@ require('lazy').setup({
         lua = { 'stylua' },
         python = { 'autopep8' },
         sh = { 'shfmt' },
-        nix = { 'nixpkgs-fmt' },
+        nix = { 'alejandra' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
