@@ -96,11 +96,21 @@ vim.o.confirm = true
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
-
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
--- Buffer keymaps
 local map = vim.keymap.set
+
+-- nvim-surround
+-- Buffer keymaps
+--     Old text                    Command         New text
+-- --------------------------------------------------------------------------------
+--     surr*ound_words             ysiw)           (surround_words)
+--     *make strings               ys$"            "make strings"
+--     [delete ar*ound me!]        ds]             delete around me!
+--     remove <b>HTML t*ags</b>    dst             remove HTML tags
+--     'change quot*es'            cs'"            "change quotes"
+--     <b>or tag* types</b>        csth1<CR>       <h1>or tag types</h1>
+--     delete(functi*on calls)     dsf             function calls
+map('n', 'ysiw', 'ysiw', { desc = '[Y]ank [S]urround [I]nside [W]ord' })
 map('n', '<leader>bn', '<cmd>enew<CR>', { desc = '[B]uffer [N]ew' })
 map('n', '<S-tab>', '<Cmd>BufferPrevious<CR>', { desc = 'Cycle Previous Buffer' })
 map('n', '<tab>', '<Cmd>BufferNext<CR>', { desc = 'Cycle Next Buffer' })
@@ -352,6 +362,9 @@ require('lazy').setup({
 
       -- Document existing key chains
       spec = {
+        { 'y', group = '[Y]ank' },
+        { 'd', group = '[D]delete' },
+        { 'c', group = '[C]ange' },
         { '<leader>k', group = '[K]ubernetes' },
         { '<leader>kk', group = '[K]ubectl' },
         { '<leader>kl', group = '[L]ogs' },
@@ -1082,7 +1095,6 @@ require('lazy').setup({
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
-
   -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
   --
   --  Here are some example plugins that I've included in the Kickstart repository.
