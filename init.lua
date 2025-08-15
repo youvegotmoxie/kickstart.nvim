@@ -128,15 +128,15 @@ map('n', '<leader>tN', '<Cmd>FloatermNext<CR>', { desc = 'Cycle Next Terminal' }
 vim.g.floaterm_title = 'Terminal ($1/$2)'
 
 -- Kubernetes keymaps
-map('n', '<leader>kkK', '<cmd>OpenK9s<CR>', { desc = 'Open [K]9s' })
-map('n', '<leader>kkk', '<cmd>OpenK9sSplit<CR>', { desc = 'Open [k]9s in Split Pane' })
-map('n', '<leader>kkc', '<cmd>SelectSplitCRD<CR>', { desc = 'View [C]RD in Split Pane' })
-map('n', '<leader>klv', '<cmd>ViewPodLogs<CR>', { desc = '[V]iew Pod Logs' })
-map('n', '<leader>klf', '<cmd>JsonFormatLogs<CR>', { desc = 'JSON Log [F]ormat' })
-map('n', '<leader>kkt', '<cmd>ToggleYamlHelm<CR>', { desc = '[T]oggle YAML/Helm' })
-map('n', '<leader>kka', '<cmd>KubectlApplyFromBuffer<CR>', { desc = '[A]pply Manifest from Buffer' })
-map('n', '<leader>kht', '<cmd>HelmTemplateFromBuffer<CR>', { desc = '[H]elm [T]emplate' })
-map('n', '<leader>khu', '<cmd>HelmDependencyUpdateFromBuffer<CR>', { desc = '[H]elm Dependency [U]pdate' })
+-- map('n', '<leader>kkK', '<cmd>OpenK9s<CR>', { desc = 'Open [K]9s' })
+-- map('n', '<leader>kkk', '<cmd>OpenK9sSplit<CR>', { desc = 'Open [k]9s in Split Pane' })
+-- map('n', '<leader>kkc', '<cmd>SelectSplitCRD<CR>', { desc = 'View [C]RD in Split Pane' })
+-- map('n', '<leader>klv', '<cmd>ViewPodLogs<CR>', { desc = '[V]iew Pod Logs' })
+-- map('n', '<leader>klf', '<cmd>JsonFormatLogs<CR>', { desc = 'JSON Log [F]ormat' })
+-- map('n', '<leader>kkt', '<cmd>ToggleYamlHelm<CR>', { desc = '[T]oggle YAML/Helm' })
+-- map('n', '<leader>kka', '<cmd>KubectlApplyFromBuffer<CR>', { desc = '[A]pply Manifest from Buffer' })
+-- map('n', '<leader>kht', '<cmd>HelmTemplateFromBuffer<CR>', { desc = '[H]elm [T]emplate' })
+-- map('n', '<leader>khu', '<cmd>HelmDependencyUpdateFromBuffer<CR>', { desc = '[H]elm Dependency [U]pdate' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -377,7 +377,7 @@ require('lazy').setup({
         { '<leader>t', group = '[T]oggle' },
         { '<leader>b', group = '[B]uffer' },
         { '<leader>l', group = '[L]azy Git' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>g', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
   },
