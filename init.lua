@@ -120,6 +120,7 @@ map('n', '<leader>bc', '<Cmd>BufferClose!<CR>', { desc = '[B]uffer [C]lose' })
 map('n', '<leader>br', '<Cmd>BufferRestore<CR>', { desc = '[B]uffer [R]estore' })
 map('n', '<leader>tc', 'gcc', { desc = '[T]oggle [C]omment', remap = true })
 map('v', '<leader>tc', 'gc', { desc = '[T]oggle [C]omment', remap = true })
+
 map('n', ';', '<Cmd>Telescope cmdline<CR>', { desc = 'Telescope Cmd History' })
 
 -- Floaterm keymaps
@@ -275,14 +276,14 @@ require('lazy').setup({
 
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
   -- If you prefer to call `setup` explicitly, use:
-  {
-    'lewis6991/gitsigns.nvim',
-    config = function()
-      require('gitsigns').setup {
-        -- Your gitsigns configuration here
-      }
-    end,
-  },
+  -- {
+  --   'lewis6991/gitsigns.nvim',
+  --   config = function()
+  --     require('gitsigns').setup {
+  --       -- Your gitsigns configuration here
+  --     }
+  --   end,
+  -- },
   --
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`.
@@ -368,9 +369,6 @@ require('lazy').setup({
         { 'c', group = '[C]ange' },
         { '<leader>w', group = '[W]ord' },
         { '<leader>k', group = '[K]ubernetes' },
-        { '<leader>kk', group = '[K]ubectl' },
-        { '<leader>kl', group = '[L]ogs' },
-        { '<leader>kh', group = '[H]elm' },
         { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
         { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
@@ -1169,7 +1167,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
