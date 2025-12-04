@@ -110,6 +110,7 @@ local map = vim.keymap.set
 --     'change quot*es'            cs'"            "change quotes"
 --     <b>or tag* types</b>        csth1<CR>       <h1>or tag types</h1>
 --     delete(functi*on calls)     dsf             function calls
+map('n', '<leader>wsq', 'ciw""<Esc>P', { desc = '[W]ord [S]urround [Q]uotes' })
 map('n', 'ysiw', 'ysiw', { desc = '[Y]ank [S]urround [I]nside [W]ord' })
 map('n', '<leader>bn', '<cmd>enew<CR>', { desc = '[B]uffer [N]ew' })
 map('n', '<S-tab>', '<Cmd>BufferPrevious<CR>', { desc = 'Cycle Previous Buffer' })
@@ -365,6 +366,7 @@ require('lazy').setup({
         { 'y', group = '[Y]ank' },
         { 'd', group = '[D]delete' },
         { 'c', group = '[C]ange' },
+        { '<leader>w', group = '[W]ord' },
         { '<leader>k', group = '[K]ubernetes' },
         { '<leader>kk', group = '[K]ubectl' },
         { '<leader>kl', group = '[L]ogs' },
@@ -741,13 +743,22 @@ require('lazy').setup({
         helm_ls = {},
         groovyls = {},
         terraformls = {},
-        -- yamlls = {
-        --   settings = {
-        --     yaml = {
-        --       keyOrdering = false,
-        --     },
-        --   },
-        -- },
+        yamlls = {
+          settings = {
+            redhat = {
+              telemetry = {
+                enabled = false,
+              },
+            },
+            yaml = {
+              keyOrdering = false,
+              format = {
+                enable = false,
+              },
+              validate = true,
+            },
+          },
+        },
         pylsp = {
           settings = {
             pylsp = {
@@ -823,7 +834,7 @@ require('lazy').setup({
         'json-lsp',
         'groovy-language-server',
         'alejandra',
-        'tflint'
+        'tflint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -986,6 +997,58 @@ require('lazy').setup({
       signature = { enabled = true },
     },
   },
+  -- {
+  --   'catppuccin/nvim',
+  --   lazy = false,
+  --   name = 'catppuccin',
+  --   opts = {
+  --     lsp_styles = {
+  --       underlines = {
+  --         errors = { 'undercurl' },
+  --         hints = { 'undercurl' },
+  --         warnings = { 'undercurl' },
+  --         information = { 'undercurl' },
+  --       },
+  --     },
+  --     integrations = {
+  --       aerial = true,
+  --       alpha = true,
+  --       cmp = true,
+  --       dashboard = true,
+  --       flash = true,
+  --       fzf = true,
+  --       grug_far = true,
+  --       gitsigns = true,
+  --       headlines = true,
+  --       illuminate = true,
+  --       indent_blankline = { enabled = true },
+  --       leap = true,
+  --       lsp_trouble = true,
+  --       mason = true,
+  --       mini = true,
+  --       navic = { enabled = true, custom_bg = 'lualine' },
+  --       neotest = true,
+  --       neotree = true,
+  --       noice = true,
+  --       notify = true,
+  --       snacks = true,
+  --       telescope = true,
+  --       treesitter_context = true,
+  --       which_key = true,
+  --     },
+  --   },
+  --   specs = {
+  --     {
+  --       'akinsho/bufferline.nvim',
+  --       optional = true,
+  --       opts = function(_, opts)
+  --         if (vim.g.colors_name or ''):find 'catppuccin' then
+  --           opts.highlights = require('catppuccin.special.bufferline').get_theme()
+  --         end
+  --       end,
+  --     },
+  --   },
+  -- },
 
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
