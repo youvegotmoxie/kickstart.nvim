@@ -739,7 +739,7 @@ require('lazy').setup({
         bashls = {},
         nil_ls = {},
         helm_ls = {},
-        groovyls = {},
+        -- groovyls = {},
         terraformls = {},
         yamlls = {
           settings = {
@@ -830,7 +830,7 @@ require('lazy').setup({
         'bash-language-server',
         'autopep8',
         'json-lsp',
-        'groovy-language-server',
+        -- 'groovy-language-server',
         'alejandra',
         'tflint',
       })
