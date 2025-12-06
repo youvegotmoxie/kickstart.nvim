@@ -5,14 +5,11 @@ repos:
     rev: v6.0.0
     hooks:
       - id: trailing-whitespace
-        args: ['--markdown-linebreak-ext=md']
+        args: ["--markdown-linebreak-ext=md"]
       - id: check-added-large-files
       - id: end-of-file-fixer
-      - id: detect-private-key
-      - id: detect-aws-credentials
-        args: ['--allow-missing-credentials']
   - repo: https://github.com/hhatto/autopep8
-    rev: 'v2.3.2'
+    rev: "v2.3.2"
     hooks:
       - id: autopep8
   - repo: https://github.com/koalaman/shellcheck-precommit
@@ -30,6 +27,11 @@ repos:
           - --ignore=DL3018 # Ignore not pinning all software package versions (apk)
           - --ignore=SC1091 # Ignore missing shellcheck mock files
   - repo: https://github.com/gruntwork-io/pre-commit
-    rev: 'v0.1.30'
+    rev: "v0.1.30"
     hooks:
       - id: terraform-validate
+  - repo: https://github.com/trufflesecurity/trufflehog
+    rev: v3.91.2
+    hooks:
+      - id: trufflehog
+        entry: bash -c 'git diff --cached --name-only | xargs -I {} trufflehog filesystem {} --fail --only-verified --log-level=-1'
