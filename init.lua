@@ -99,6 +99,7 @@ vim.o.confirm = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 local map = vim.keymap.set
 
+-- KEYBINDS: Surround and buffers
 -- nvim-surround
 -- Buffer keymaps
 --     Old text                    Command         New text
@@ -123,7 +124,7 @@ map('v', '<leader>tc', 'gc', { desc = '[T]oggle [C]omment', remap = true })
 
 map('n', ';', '<Cmd>Telescope cmdline<CR>', { desc = 'Telescope Cmd History' })
 
--- Floaterm keymaps
+-- KEYBINDS: Terminal
 map('n', '<leader>tt', '<Cmd>FloatermToggle<CR>', { desc = '[T]erminal [T]toggle' })
 map('n', '<leader>tn', '<Cmd>FloatermNew<CR>', { desc = '[T]erminal [New]' })
 map('n', '<leader>tN', '<Cmd>FloatermNext<CR>', { desc = 'Cycle Next Terminal' })
@@ -159,7 +160,7 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
---
+-- KEYBINDS: buffer movement
 --  See `:help wincmd` for a list of all window commands
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
@@ -273,35 +274,6 @@ require('lazy').setup({
   --
   -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
   --
-
-  -- Alternatively, use `config = function() ... end` for full control over the configuration.
-  -- If you prefer to call `setup` explicitly, use:
-  -- {
-  --   'lewis6991/gitsigns.nvim',
-  --   config = function()
-  --     require('gitsigns').setup {
-  --       -- Your gitsigns configuration here
-  --     }
-  --   end,
-  -- },
-  --
-  -- Here is a more advanced example where we pass configuration
-  -- options to `gitsigns.nvim`.
-  --
-  -- See `:help gitsigns` to understand what the configuration keys do
-  -- { -- Adds git related signs to the gutter, as well as utilities for managing changes
-  --   'lewis6991/gitsigns.nvim',
-  --   opts = {
-  --     signs = {
-  --       add = { text = '+' },
-  --       change = { text = '~' },
-  --       delete = { text = '_' },
-  --       topdelete = { text = '‾' },
-  --       changedelete = { text = '~' },
-  --     },
-  --   },
-  -- },
-
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
@@ -362,13 +334,13 @@ require('lazy').setup({
         },
       },
 
+      -- KEYBINDS: Key groups
       -- Document existing key chains
       spec = {
         { 'y', group = '[Y]ank' },
         { 'd', group = '[D]delete' },
         { 'c', group = '[C]ange' },
         { '<leader>w', group = '[W]ord' },
-        { '<leader>k', group = '[K]ubernetes' },
         { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
         { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
@@ -469,6 +441,7 @@ require('lazy').setup({
       pcall(require('telescope').load_extension, 'cmdline')
       pcall(require('telescope').load_extension, 'zoxide')
 
+      -- KEYBINDS: Git commands, help and searching
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>gs', builtin.git_status, { desc = '[G]it [S]tatus' })
@@ -584,6 +557,7 @@ require('lazy').setup({
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
+          -- KEYBIND: LSP Commands
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
           map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
@@ -995,59 +969,6 @@ require('lazy').setup({
       signature = { enabled = true },
     },
   },
-  -- {
-  --   'catppuccin/nvim',
-  --   lazy = false,
-  --   name = 'catppuccin',
-  --   opts = {
-  --     lsp_styles = {
-  --       underlines = {
-  --         errors = { 'undercurl' },
-  --         hints = { 'undercurl' },
-  --         warnings = { 'undercurl' },
-  --         information = { 'undercurl' },
-  --       },
-  --     },
-  --     integrations = {
-  --       aerial = true,
-  --       alpha = true,
-  --       cmp = true,
-  --       dashboard = true,
-  --       flash = true,
-  --       fzf = true,
-  --       grug_far = true,
-  --       gitsigns = true,
-  --       headlines = true,
-  --       illuminate = true,
-  --       indent_blankline = { enabled = true },
-  --       leap = true,
-  --       lsp_trouble = true,
-  --       mason = true,
-  --       mini = true,
-  --       navic = { enabled = true, custom_bg = 'lualine' },
-  --       neotest = true,
-  --       neotree = true,
-  --       noice = true,
-  --       notify = true,
-  --       snacks = true,
-  --       telescope = true,
-  --       treesitter_context = true,
-  --       which_key = true,
-  --     },
-  --   },
-  --   specs = {
-  --     {
-  --       'akinsho/bufferline.nvim',
-  --       optional = true,
-  --       opts = function(_, opts)
-  --         if (vim.g.colors_name or ''):find 'catppuccin' then
-  --           opts.highlights = require('catppuccin.special.bufferline').get_theme()
-  --         end
-  --       end,
-  --     },
-  --   },
-  -- },
-
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
@@ -1077,6 +998,7 @@ require('lazy').setup({
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
+      -- KEYBIND: Yank around
       -- Better Around/Inside textobjects
       --
       -- Examples:
@@ -1167,7 +1089,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
-  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.gitsigns',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
