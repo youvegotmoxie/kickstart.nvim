@@ -377,7 +377,7 @@ require('lazy').setup({
         { '<leader>t', group = '[T]oggle' },
         { '<leader>b', group = '[B]uffer' },
         { '<leader>l', group = '[L]azy Git' },
-        { '<leader>g', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
   },
