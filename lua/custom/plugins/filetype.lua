@@ -4,4 +4,9 @@ return {
   dependencies = {
     'crakkhead/ansible.nvim',
   },
+  vim.filetype.add {
+    pattern = {
+      ['.*/.github/workflows/.*'] = 'ghaction',
+    },
+  },
 }
