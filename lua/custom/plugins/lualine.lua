@@ -8,6 +8,7 @@ return {
         options = {
           icons_enabled = true,
           globalstatus = true,
+          theme = 'tokyonight',
         },
       }
     end,

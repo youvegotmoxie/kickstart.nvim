@@ -16,7 +16,7 @@ vim.g.have_nerd_font = true
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.o.relativenumber = true
+vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -99,13 +99,13 @@ vim.o.confirm = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 local map = vim.keymap.set
 
--- KEYBINDS: Surround and buffers
+-- KEYBINDS: Surrounds
 -- nvim-surround
 -- Buffer keymaps
 --     Old text                    Command         New text
 -- --------------------------------------------------------------------------------
 --     surr*ound_words             ysiw)           (surround_words)
---     *make strings               ys$"            "make strings"
+--     *make strings               ys$""make strings"
 --     [delete ar*ound me!]        ds]             delete around me!
 --     remove <b>HTML t*ags</b>    dst             remove HTML tags
 --     'change quot*es'            cs'"            "change quotes"
@@ -113,15 +113,21 @@ local map = vim.keymap.set
 --     delete(functi*on calls)     dsf             function calls
 map('n', '<leader>wsq', 'ciw""<Esc>P', { desc = '[W]ord [S]urround [Q]uotes' })
 map('n', 'ysiw', 'ysiw', { desc = '[Y]ank [S]urround [I]nside [W]ord' })
+
+-- KEYBINDS: Buffer management
 map('n', '<leader>bn', '<cmd>enew<CR>', { desc = '[B]uffer [N]ew' })
+map('n', '<leader>bp', '<cmd>BufferPin<CR>', { desc = '[B]uffer [P]in' })
+map('n', '<leader>bC', '<cmd>BufferCloseAllButCurrentOrPinned<CR>', { desc = '[B]uffer [C]lose all but pinned' })
+map('n', '<leader>bL', '<cmd>BufferCloseBuffersLeft<CR>', { desc = '[B]uffer Close to [L]eft' })
+map('n', '<leader>bR', '<cmd>BufferCloseBuffersRight<CR>', { desc = '[B]uffer Close to [R]ight' })
 map('n', '<S-tab>', '<Cmd>BufferPrevious<CR>', { desc = 'Cycle Previous Buffer' })
 map('n', '<tab>', '<Cmd>BufferNext<CR>', { desc = 'Cycle Next Buffer' })
 map('n', '<leader>bN', '<Cmd>BufferOrderByName<CR>', { desc = '[B]uffer Order by [N]ame' })
 map('n', '<leader>bc', '<Cmd>BufferClose!<CR>', { desc = '[B]uffer [C]lose' })
 map('n', '<leader>br', '<Cmd>BufferRestore<CR>', { desc = '[B]uffer [R]estore' })
+
 map('n', '<leader>tc', 'gcc', { desc = '[T]oggle [C]omment', remap = true })
 map('v', '<leader>tc', 'gc', { desc = '[T]oggle [C]omment', remap = true })
-
 map('n', ';', '<Cmd>Telescope cmdline<CR>', { desc = 'Telescope Cmd History' })
 
 -- KEYBINDS: Terminal
@@ -129,17 +135,6 @@ map('n', '<leader>tt', '<Cmd>FloatermToggle<CR>', { desc = '[T]erminal [T]toggle
 map('n', '<leader>tn', '<Cmd>FloatermNew<CR>', { desc = '[T]erminal [New]' })
 map('n', '<leader>tN', '<Cmd>FloatermNext<CR>', { desc = 'Cycle Next Terminal' })
 vim.g.floaterm_title = 'Terminal ($1/$2)'
-
--- Kubernetes keymaps
--- map('n', '<leader>kkK', '<cmd>OpenK9s<CR>', { desc = 'Open [K]9s' })
--- map('n', '<leader>kkk', '<cmd>OpenK9sSplit<CR>', { desc = 'Open [k]9s in Split Pane' })
--- map('n', '<leader>kkc', '<cmd>SelectSplitCRD<CR>', { desc = 'View [C]RD in Split Pane' })
--- map('n', '<leader>klv', '<cmd>ViewPodLogs<CR>', { desc = '[V]iew Pod Logs' })
--- map('n', '<leader>klf', '<cmd>JsonFormatLogs<CR>', { desc = 'JSON Log [F]ormat' })
--- map('n', '<leader>kkt', '<cmd>ToggleYamlHelm<CR>', { desc = '[T]oggle YAML/Helm' })
--- map('n', '<leader>kka', '<cmd>KubectlApplyFromBuffer<CR>', { desc = '[A]pply Manifest from Buffer' })
--- map('n', '<leader>kht', '<cmd>HelmTemplateFromBuffer<CR>', { desc = '[H]elm [T]emplate' })
--- map('n', '<leader>khu', '<cmd>HelmDependencyUpdateFromBuffer<CR>', { desc = '[H]elm Dependency [U]pdate' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -152,14 +147,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
+-- KEYBINDS: Window movement
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
+--  Add SHIFT to move windows - C-w,H
 -- KEYBINDS: buffer movement
 --  See `:help wincmd` for a list of all window commands
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
@@ -246,7 +237,7 @@ require('lazy').setup({
         'netrwPlugin',
         'netrwSettings',
         'netrwFileHandlers',
-        'matchit',
+        -- 'matchit',
         'tar',
         'tarPlugin',
         'rrhelper',
@@ -296,6 +287,8 @@ require('lazy').setup({
     opts = {
       -- delay between pressing a key and opening which-key (milliseconds)
       -- this setting is independent of vim.o.timeoutlen
+      -- Helix mode is much more readable since everything is on a single line
+      preset = 'helix',
       delay = 0,
       icons = {
         -- set icon mappings to true if you have a Nerd Font
@@ -341,9 +334,9 @@ require('lazy').setup({
         { 'd', group = '[D]delete' },
         { 'c', group = '[C]ange' },
         { '<leader>w', group = '[W]ord' },
-        { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
-        { '<leader>d', group = '[D]ocument' },
-        { '<leader>r', group = '[R]ename' },
+        -- { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
+        -- { '<leader>d', group = '[D]ocument' },
+        -- { '<leader>r', group = '[R]ename' },
         { '<leader>g', group = '[G]it' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
@@ -557,7 +550,7 @@ require('lazy').setup({
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
-          -- KEYBIND: LSP Commands
+          -- KEYBINDS: LSP Commands
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
           map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
@@ -729,6 +722,7 @@ require('lazy').setup({
             },
           },
         },
+        -- Python LSP Settings
         pylsp = {
           settings = {
             pylsp = {
@@ -846,6 +840,7 @@ require('lazy').setup({
           }
         end
       end,
+      -- Configure formatters by file type
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'autopep8' },
@@ -860,7 +855,8 @@ require('lazy').setup({
     },
   },
 
-  { -- Autocompletion
+  {
+    -- Autocompletion
     'saghen/blink.cmp',
     event = 'VimEnter',
     version = '1.*',
@@ -958,28 +954,41 @@ require('lazy').setup({
       signature = { enabled = true },
     },
   },
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'projekt0n/github-nvim-theme',
-    name = 'github-theme',
+  -- THEMES current: tokyonight
+  {
+    'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
-    config = function()
-      require('github-theme').setup {}
-    end,
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'github_dark'
+    opts = {
+      dim_inactive = true,
+    },
 
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
+    init = function()
+      vim.cmd.colorscheme 'tokyonight'
     end,
   },
+  -- { -- You can easily change to a different colorscheme.
+  --   -- Change the name of the colorscheme plugin below, and then
+  --   -- change the command in the config to whatever the name of that colorscheme is.
+  --   --
+  --   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  --   'projekt0n/github-nvim-theme',
+  --   name = 'github-theme',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require('github-theme').setup {}
+  --   end,
+  --   init = function()
+  --     -- Load the colorscheme here.
+  --     -- Like many other themes, this one has different styles, and you could load
+  --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+  --     vim.cmd.colorscheme 'github_dark'
+  --
+  --     -- You can configure highlights by doing something like:
+  --     vim.cmd.hi 'Comment gui=none'
+  --   end,
+  -- },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
@@ -987,7 +996,7 @@ require('lazy').setup({
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
-      -- KEYBIND: Yank around
+      -- KEYBINDS: Yank around and more surrounds
       -- Better Around/Inside textobjects
       --
       -- Examples:

@@ -18,7 +18,7 @@ return {
           else
             gitsigns.nav_hunk 'next'
           end
-        end, { desc = 'Jump to next git [c]hange' })
+        end, { desc = 'Jump to Next Git [C]hange' })
 
         map('n', '[c', function()
           if vim.wo.diff then
@@ -26,8 +26,9 @@ return {
           else
             gitsigns.nav_hunk 'prev'
           end
-        end, { desc = 'Jump to previous git [C]hange' })
+        end, { desc = 'Jump to Previous Git [C]hange' })
 
+        -- KEYBINDS: Git
         -- Actions
         -- visual mode
         map('v', '<leader>hs', function()
@@ -47,10 +48,10 @@ return {
         map('n', '<leader>hd', gitsigns.diffthis, { desc = 'Git [D]iff Against Index' })
         map('n', '<leader>hD', function()
           gitsigns.diffthis '@'
-        end, { desc = 'git [D]iff against last commit' })
+        end, { desc = 'Git [D]iff Against Last Commit' })
         -- Toggles
-        map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
-        map('n', '<leader>tD', gitsigns.preview_hunk_inline, { desc = '[T]oggle git show [D]eleted' })
+        map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle Git Show [B]lame line' })
+        map('n', '<leader>tD', gitsigns.preview_hunk_inline, { desc = '[T]oggle Git Show [D]eleted' })
       end,
     },
   },
