@@ -11,7 +11,7 @@ return {
   },
   lazy = false,
   keys = {
-    { '<leader>e', ':Neotree reveal<CR>', desc = '[N]eoTree reveal', silent = true },
+    { '<leader>T', ':Neotree reveal<CR>', desc = 'Neo[T]ree reveal', silent = true },
   },
   opts = {
     filesystem = {
@@ -20,7 +20,7 @@ return {
       },
       window = {
         mappings = {
-          ['<leader>e'] = 'close_window',
+          ['<leader>T'] = 'close_window',
         },
       },
     },
