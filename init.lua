@@ -334,6 +334,7 @@ require('lazy').setup({
         { 'd', group = '[D]delete' },
         { 'c', group = '[C]ange' },
         { '<leader>w', group = '[W]ord' },
+        { '<leader>c', group = "[Y]azi"},
         -- { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
         -- { '<leader>d', group = '[D]ocument' },
         -- { '<leader>r', group = '[R]ename' },
@@ -1086,7 +1087,7 @@ require('lazy').setup({
   require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
-  require 'kickstart.plugins.neo-tree',
+  -- require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns',
   require 'kickstart.plugins.lint',
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
