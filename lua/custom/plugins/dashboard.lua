@@ -37,6 +37,7 @@ return {
           { action = "Lazy",                                            desc = " Lazy",            icon = "󰒲 ", key = "l" },
           { action = "Mason",                                           desc = " Mason",           icon = "⌘ ", key = "m" },
           { action = function() vim.api.nvim_input("<cmd>qa!<cr>") end, desc = " Quit",            icon = " ", key = "q" },
+          { action = 'Triforce profile',                                desc = " Triforce",        icon = "✨", key = "t" },
         },
           footer = function()
             local stats = require('lazy').stats()
