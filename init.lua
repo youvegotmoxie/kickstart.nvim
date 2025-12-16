@@ -153,11 +153,16 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 --  Add SHIFT to move windows - C-w,H
 -- KEYBINDS: buffer movement
 --  See `:help wincmd` for a list of all window commands
---
-vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Focus on left window' })
-vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Focus on below window' })
-vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Focus on above window' })
-vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Focus on right window' })
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
+-- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
+-- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
+-- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
+-- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -1000,11 +1005,6 @@ require('lazy').setup({
       --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
       --  - ci'  - [C]hange [I]nside [']quote
       require('mini.ai').setup { n_lines = 500 }
-      require('mini.basics').setup {
-        mappings = {
-          windows = false,
-        },
-      }
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
