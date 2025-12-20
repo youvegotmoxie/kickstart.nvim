@@ -790,6 +790,7 @@ require('lazy').setup({
         'groovy-language-server',
         'alejandra',
         'tflint',
+        'markdownlint',
         'actionlint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
