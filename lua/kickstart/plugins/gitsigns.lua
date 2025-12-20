@@ -29,15 +29,13 @@ return {
         end, { desc = 'Jump to Previous Git [C]hange' })
 
         -- KEYBINDS: Git
-        -- Actions
-        -- visual mode
         map('v', '<leader>hs', function()
           gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
         end, { desc = 'Git [S]tage Hunk' })
         map('v', '<leader>hr', function()
           gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
         end, { desc = 'Git [R]eset Hunk' })
-        -- normal mode
+        map('n', '<leader>gD', '<CMD>CodeDiff<CR>', { desc = '[G]it VSCode [D]iff' })
         map('n', '<leader>hs', gitsigns.stage_hunk, { desc = 'Git [S]tage Hunk' })
         map('n', '<leader>hr', gitsigns.reset_hunk, { desc = 'Git [R]eset Hunk' })
         map('n', '<leader>hS', gitsigns.stage_buffer, { desc = 'Git [S]tage Buffer' })
