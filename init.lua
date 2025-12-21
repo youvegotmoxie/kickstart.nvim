@@ -18,6 +18,9 @@ vim.o.number = true
 --  Experiment for yourself to see if you like it!
 vim.o.relativenumber = true
 
+-- Map U to redo which is opposite of u undo
+vim.keymap.set('n', 'U', '<CMD>redo<CR>', { desc = 'Redo' })
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
 
