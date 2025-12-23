@@ -5,9 +5,7 @@ return {
     config = function()
       require('triforce').setup {
         notifications = {
-          enabled = true,
-          level_up = false,
-          achievements = true,
+          enabled = false,
         },
         keymap = {
           show_profile = '<leader>tp',
