@@ -1,6 +1,7 @@
 return {
   {
     'ggandor/leap.nvim',
+    url = 'https://codeberg.org/andyg/leap.nvim',
     dependencies = {},
   },
   vim.keymap.set({ 'n', 'x', 'o' }, 'gs', '<Plug>(leap)', { desc = 'Leap [S]earch' }),
