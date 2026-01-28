@@ -19,5 +19,5 @@ return {
     },
     version = '^1.0.0',
   },
-  require('gitsigns').setup {},
+  -- require('gitsigns').setup {},
 }
