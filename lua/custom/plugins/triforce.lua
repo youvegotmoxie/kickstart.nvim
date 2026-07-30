@@ -7,9 +7,6 @@ return {
         notifications = {
           enabled = false,
         },
-        keymap = {
-          show_profile = '<leader>tp',
-        },
       }
     end,
   },
